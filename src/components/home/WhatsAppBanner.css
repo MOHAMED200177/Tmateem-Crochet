@@ -1,0 +1,45 @@
+.wa-banner {
+  background: linear-gradient(135deg, var(--clr-terracotta) 0%, var(--clr-clay) 100%);
+  padding-block: 3rem;
+  margin-block: 0;
+}
+
+.wa-banner__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .wa-banner__inner { flex-direction: row; justify-content: space-between; text-align: left; }
+}
+
+.wa-banner__text h2 {
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+.wa-banner__text p {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.95rem;
+}
+
+.wa-banner__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--clr-espresso);
+  color: #fff;
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: transform var(--dur-fast), background var(--dur-fast);
+  box-shadow: var(--shadow-md);
+}
+.wa-banner__btn:hover {
+  transform: translateY(-2px);
+  background: var(--clr-bark);
+}

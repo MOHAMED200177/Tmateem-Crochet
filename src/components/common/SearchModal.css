@@ -1,0 +1,184 @@
+.search-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(42,21,8,0.4);
+  backdrop-filter: blur(4px);
+  z-index: var(--z-modal);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 8vh;
+  padding-inline: 1.25rem;
+  animation: fadeIn var(--dur-mid) var(--ease-out);
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.search-modal {
+  background: var(--clr-cream);
+  width: 100%;
+  max-width: 600px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: slideDown var(--dur-mid) var(--ease-out);
+  max-height: 75vh;
+  display: flex;
+  flex-direction: column;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-16px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.search-modal__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--clr-border);
+  color: var(--clr-muted);
+  flex-shrink: 0;
+}
+
+.search-modal__input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 1rem;
+  color: var(--clr-espresso);
+}
+.search-modal__input::placeholder { color: var(--clr-muted); }
+
+.search-modal__clear {
+  font-size: 1.4rem;
+  color: var(--clr-muted);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-modal__close {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--clr-muted);
+  border: 1px solid var(--clr-border-dark);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.search-modal__body {
+  overflow-y: auto;
+  padding: 1.25rem;
+  flex: 1;
+}
+
+.search-modal__section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+.search-modal__section-head .t-label { color: var(--clr-muted); }
+
+.search-modal__clear-history,
+.search-modal__view-all {
+  font-size: 0.75rem;
+  color: var(--clr-terracotta);
+  font-weight: 500;
+}
+
+.search-modal__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.search-modal__chip {
+  padding: 0.4rem 0.85rem;
+  background: var(--clr-whisper);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  color: var(--clr-bark);
+  transition: background var(--dur-fast);
+}
+.search-modal__chip:hover { background: var(--clr-sand); }
+
+.search-modal__empty {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--clr-muted);
+}
+.search-modal__empty .t-serif { font-size: 1.2rem; color: var(--clr-bark); margin-bottom: 0.4rem; }
+.search-modal__empty-hint { font-size: 0.8rem; }
+
+.search-modal__results {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.search-result {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.6rem;
+  border-radius: var(--radius-md);
+  text-align: left;
+  width: 100%;
+  transition: background var(--dur-fast);
+}
+.search-result:hover { background: var(--clr-whisper); }
+
+.search-result__img {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+.search-result__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.search-result__name {
+  font-size: 0.875rem;
+  color: var(--clr-espresso);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.search-result__meta {
+  font-size: 0.7rem;
+  color: var(--clr-muted);
+  text-transform: capitalize;
+}
+.search-result__price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--clr-espresso);
+  flex-shrink: 0;
+}
+.search-result__discount {
+  font-size: 0.65rem;
+  color: var(--clr-terracotta);
+  font-weight: 600;
+}
+
+.search-modal__loading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.search-result-skeleton {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.6rem;
+}

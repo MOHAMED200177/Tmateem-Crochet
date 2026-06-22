@@ -1,0 +1,173 @@
+.qv-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(42,21,8,0.55);
+  backdrop-filter: blur(6px);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn var(--dur-mid) var(--ease-out);
+}
+
+.qv-modal {
+  background: var(--clr-cream);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 920px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  position: relative;
+  box-shadow: var(--shadow-xl);
+  animation: slideDown var(--dur-mid) var(--ease-out);
+}
+@media (min-width: 768px) {
+  .qv-modal { grid-template-columns: 1fr 1fr; max-height: 86vh; }
+}
+
+.qv-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  font-size: 1.4rem;
+  color: var(--clr-bark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  box-shadow: var(--shadow-sm);
+}
+
+.qv-gallery {
+  background: var(--clr-sand);
+  display: flex;
+  flex-direction: column;
+}
+.qv-gallery__main {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+.qv-gallery__thumbs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+.qv-gallery__thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 2px solid transparent;
+  opacity: 0.6;
+  transition: opacity var(--dur-fast), border-color var(--dur-fast);
+}
+.qv-gallery__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.qv-gallery__thumb--active { opacity: 1; border-color: var(--clr-terracotta); }
+
+.qv-info {
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.qv-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  margin: 0.4rem 0 0.6rem;
+  color: var(--clr-espresso);
+}
+
+.qv-rating { display: flex; align-items: center; gap: 1px; font-size: 0.8rem; margin-bottom: 0.9rem; }
+
+.qv-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.qv-price-current { font-size: 1.5rem; font-weight: 500; color: var(--clr-espresso); }
+.qv-price-old { font-size: 1rem; color: var(--clr-muted); text-decoration: line-through; }
+.qv-discount { font-size: 0.75rem; font-weight: 600; color: #fff; background: var(--clr-terracotta); padding: 0.2rem 0.5rem; border-radius: var(--radius-full); }
+
+.qv-desc {
+  font-size: 0.9rem;
+  color: var(--clr-bark);
+  line-height: 1.6;
+  margin-bottom: 1.4rem;
+}
+
+.qv-option { margin-bottom: 1.25rem; }
+.qv-option .t-label { color: var(--clr-muted); display: block; margin-bottom: 0.6rem; }
+
+.qv-swatches { display: flex; gap: 0.5rem; }
+.qv-swatch {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 2px solid transparent;
+  box-shadow: inset 0 0 0 1px rgba(42,21,8,0.1);
+  transition: transform var(--dur-fast), border-color var(--dur-fast);
+}
+.qv-swatch--active { border-color: var(--clr-terracotta); transform: scale(1.12); }
+
+.qv-sizes { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.qv-size {
+  min-width: 42px;
+  height: 36px;
+  padding: 0 0.6rem;
+  border: 1.5px solid var(--clr-border-dark);
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--clr-bark);
+  transition: background var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);
+}
+.qv-size--active { background: var(--clr-espresso); color: #fff; border-color: var(--clr-espresso); }
+
+.qv-qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--clr-border-dark);
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+.qv-qty button {
+  width: 34px; height: 34px;
+  font-size: 1rem;
+  color: var(--clr-bark);
+}
+.qv-qty span { min-width: 32px; text-align: center; font-weight: 500; }
+
+.qv-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+.qv-btn {
+  padding: 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-align: center;
+  transition: opacity var(--dur-fast), transform var(--dur-fast);
+}
+.qv-btn:hover { transform: translateY(-1px); }
+.qv-btn--primary { background: var(--clr-espresso); color: #fff; }
+.qv-btn--whatsapp { background: #25D366; color: #fff; }
+
+.qv-fulllink {
+  display: inline-block;
+  margin-top: 1.1rem;
+  font-size: 0.8rem;
+  color: var(--clr-terracotta);
+  font-weight: 500;
+  text-align: center;
+}

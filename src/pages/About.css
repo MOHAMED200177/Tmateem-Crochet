@@ -1,0 +1,72 @@
+.about-hero { padding-block: clamp(3rem, 7vw, 5rem); }
+
+.about-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .about-hero__grid { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+}
+
+.about-hero__title {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  color: var(--clr-espresso);
+  margin: 0.75rem 0 1.5rem;
+  line-height: 1.15;
+}
+.about-hero__title .t-serif { color: var(--clr-terracotta); }
+
+.about-hero__text {
+  font-size: 1rem;
+  color: var(--clr-bark);
+  line-height: 1.8;
+  margin-bottom: 1.1rem;
+  max-width: 520px;
+}
+
+.about-hero__img {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  box-shadow: var(--shadow-lg);
+}
+.about-hero__img img { width: 100%; height: 100%; object-fit: cover; }
+
+.about-values {
+  padding-block: clamp(3rem, 6vw, 4.5rem);
+  background: var(--clr-whisper);
+}
+.about-values__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .about-values__grid { grid-template-columns: repeat(3, 1fr); }
+}
+.about-value { text-align: center; padding: 0 1rem; }
+.about-value__num { display: block; font-size: 2.4rem; color: var(--clr-terracotta); margin-bottom: 0.5rem; }
+.about-value h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--clr-espresso); margin-bottom: 0.6rem; }
+.about-value p { font-size: 0.875rem; color: var(--clr-bark); line-height: 1.65; }
+
+.about-team { padding-block: clamp(4rem, 8vw, 6rem); }
+.about-team__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 640px) {
+  .about-team__grid { grid-template-columns: repeat(3, 1fr); }
+}
+.about-team-card { text-align: center; }
+.about-team-card img {
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.25rem;
+  box-shadow: var(--shadow-md);
+}
+.about-team-card h3 { font-family: var(--font-display); font-size: 1.15rem; color: var(--clr-espresso); margin-bottom: 0.3rem; }
+.about-team-card p { font-size: 0.8rem; color: var(--clr-muted); }

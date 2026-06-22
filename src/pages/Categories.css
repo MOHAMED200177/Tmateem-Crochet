@@ -1,0 +1,29 @@
+.cat-page { padding-block: clamp(2rem, 5vw, 3rem); }
+
+.cat-tabs {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.cat-tab {
+  padding: 0.55rem 1.1rem;
+  border: 1.5px solid var(--clr-border-dark);
+  border-radius: var(--radius-full);
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: var(--clr-bark);
+  text-transform: capitalize;
+  transition: background var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);
+}
+.cat-tab:hover { border-color: var(--clr-terracotta); }
+.cat-tab--active { background: var(--clr-espresso); color: #fff; border-color: var(--clr-espresso); }
+
+.cat-page__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--clr-border);
+}

@@ -1,0 +1,32 @@
+.p-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .p-grid { gap: 1.5rem; }
+}
+@media (min-width: 900px) {
+  .p-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1280px) {
+  .p-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.p-grid-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1rem;
+  text-align: center;
+  color: var(--clr-muted);
+  gap: 0.5rem;
+}
+.p-grid-empty__icon { font-size: 2.5rem; color: var(--clr-border-dark); }
+.p-grid-empty .t-serif { font-size: 1.3rem; color: var(--clr-bark); }
+
+.p-card-skeleton {
+  display: flex;
+  flex-direction: column;
+}

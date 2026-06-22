@@ -1,0 +1,78 @@
+.philosophy {
+  background: var(--clr-espresso);
+  padding-block: clamp(4rem, 9vw, 7rem);
+  position: relative;
+  overflow: hidden;
+}
+.philosophy::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 15% 20%, rgba(196,98,45,0.12) 0%, transparent 40%),
+                     radial-gradient(circle at 85% 80%, rgba(232,168,124,0.08) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+.philosophy__intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto clamp(3rem, 6vw, 4.5rem);
+  position: relative;
+  z-index: 1;
+}
+.philosophy__title {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  color: var(--clr-cream);
+  margin-top: 0.85rem;
+  line-height: 1.25;
+}
+.philosophy__italic {
+  color: var(--clr-clay);
+  font-size: 1.05em;
+}
+
+.philosophy__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+@media (min-width: 768px) {
+  .philosophy__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.philosophy__card {
+  background: rgba(232,213,192,0.04);
+  border: 1px solid rgba(232,213,192,0.12);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 1.75rem;
+  text-align: center;
+  transition: background var(--dur-mid), transform var(--dur-mid) var(--ease-out);
+}
+.philosophy__card:hover {
+  background: rgba(232,213,192,0.07);
+  transform: translateY(-4px);
+}
+
+.philosophy__mark {
+  display: block;
+  font-size: 1.5rem;
+  color: var(--clr-terracotta);
+  margin-bottom: 1rem;
+  font-family: serif;
+  letter-spacing: 0.1em;
+}
+
+.philosophy__card-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--clr-cream);
+  margin-bottom: 0.85rem;
+}
+
+.philosophy__card-text {
+  font-size: 0.9rem;
+  color: rgba(232,213,192,0.65);
+  line-height: 1.75;
+}

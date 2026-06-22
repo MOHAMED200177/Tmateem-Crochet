@@ -1,0 +1,21 @@
+.featured-section {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.featured-section__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.featured-section__viewall {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--clr-terracotta);
+  white-space: nowrap;
+  padding-bottom: 0.4rem;
+}
+.featured-section__viewall:hover { text-decoration: underline; }
