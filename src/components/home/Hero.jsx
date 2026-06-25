@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useRevealOnMount } from '../../hooks/useScrollReveal';
 import { PRODUCTS } from '../../data/products';
+import { HERO_CONTENT } from '../../data/homeContent';
 import './Hero.css';
 
 export default function Hero() {
@@ -23,40 +24,34 @@ export default function Hero() {
 
       <div className="container hero__grid">
         <div className="hero__content">
-          <p className="hero__eyebrow reveal" ref={titleRef}>✦ Handmade, Stitch by Stitch</p>
+          <p className="hero__eyebrow reveal" ref={titleRef}>{HERO_CONTENT.eyebrow}</p>
           <h1 className="hero__title t-display reveal" ref={titleRef}>
-            Crochet<br/>
-            <span className="hero__title-accent">made by hand,</span><br/>
-            made for you.
+            {HERO_CONTENT.titleLine1}<br/>
+            <span className="hero__title-accent">{HERO_CONTENT.titleAccent}</span><br/>
+            {HERO_CONTENT.titleLine2}
           </h1>
           <p className="hero__subtitle t-serif reveal" ref={subRef}>
-            Custom sizes, custom colors — every piece is crocheted
-            one loop at a time, just for you.
+            {HERO_CONTENT.subtitle}
           </p>
           <div className="hero__cta-group reveal" ref={ctaRef}>
-            <Link to="/shop" className="hero__cta hero__cta--primary">
-              Explore the Collection
+            <Link to={HERO_CONTENT.ctaPrimary.to} className="hero__cta hero__cta--primary">
+              {HERO_CONTENT.ctaPrimary.label}
             </Link>
-            <Link to="/about" className="hero__cta hero__cta--ghost">
-              Our Story
+            <Link to={HERO_CONTENT.ctaSecondary.to} className="hero__cta hero__cta--ghost">
+              {HERO_CONTENT.ctaSecondary.label}
             </Link>
           </div>
 
           <div className="hero__stats reveal" ref={ctaRef}>
-            <div className="hero__stat">
-              <span className="hero__stat-num t-display">100%</span>
-              <span className="hero__stat-label t-label">Handmade</span>
-            </div>
-            <div className="hero__stat-divider" />
-            <div className="hero__stat">
-              <span className="hero__stat-num t-display">∞</span>
-              <span className="hero__stat-label t-label">Custom Colors</span>
-            </div>
-            <div className="hero__stat-divider" />
-            <div className="hero__stat">
-              <span className="hero__stat-num t-display">✦</span>
-              <span className="hero__stat-label t-label">Made to Order</span>
-            </div>
+            {HERO_CONTENT.stats.map((stat, i) => (
+              <div key={stat.label} style={{ display: 'contents' }}>
+                <div className="hero__stat">
+                  <span className="hero__stat-num t-display">{stat.num}</span>
+                  <span className="hero__stat-label t-label">{stat.label}</span>
+                </div>
+                {i < HERO_CONTENT.stats.length - 1 && <div className="hero__stat-divider" />}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -64,29 +59,29 @@ export default function Hero() {
           <div className="hero__img-wrap hero__img-wrap--main">
             <img
               src={heroMain}
-              alt="Tmateem Crochet handmade piece"
+              alt={HERO_CONTENT.imageAlt.main}
               loading="eager"
             />
           </div>
           <div className="hero__img-wrap hero__img-wrap--float">
             <img
               src={heroFloat}
-              alt="Close-up detail of hand-crocheted stitches"
+              alt={HERO_CONTENT.imageAlt.float}
               loading="eager"
             />
           </div>
           <div className="hero__badge-card">
             <span className="hero__badge-card-icon">✦</span>
             <div>
-              <strong>Hand-Crocheted</strong>
-              <span>Every single loop</span>
+              <strong>{HERO_CONTENT.badge.title}</strong>
+              <span>{HERO_CONTENT.badge.subtitle}</span>
             </div>
           </div>
         </div>
       </div>
 
       <div className="hero__scroll-cue" aria-hidden="true">
-        <span className="t-label">Scroll</span>
+        <span className="t-label">{HERO_CONTENT.scrollHint}</span>
         <div className="hero__scroll-line" />
       </div>
     </section>

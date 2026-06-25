@@ -4,6 +4,7 @@ import { useFilteredProducts } from '../hooks/useFilteredProducts';
 import ProductGrid from '../components/product/ProductGrid';
 import FilterPanel, { SORT_OPTIONS } from '../components/shop/FilterPanel';
 import PageHeader from '../components/common/PageHeader';
+import { SHOP_PAGE } from '../data/pageContent';
 import './Shop.css';
 
 export default function Shop() {
@@ -16,9 +17,9 @@ export default function Shop() {
   return (
     <>
       <PageHeader
-        eyebrow="The Full Collection"
-        title="Shop All Pieces"
-        subtitle={`${PRODUCTS.length} handcrafted pieces, each one slightly unique`}
+        eyebrow={SHOP_PAGE.eyebrow}
+        title={SHOP_PAGE.title}
+        subtitle={SHOP_PAGE.subtitle(PRODUCTS.length)}
       />
 
       <div className="container shop-layout">
@@ -38,15 +39,15 @@ export default function Shop() {
           <div className="shop-toolbar">
             <button className="shop-toolbar__filter-btn" onClick={() => setFilterOpen(true)}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-              Filters
+              {SHOP_PAGE.filtersButtonLabel}
             </button>
-            <span className="shop-toolbar__count">{filtered.length} results</span>
-            <select className="shop-toolbar__sort" value={sort} onChange={(e) => setSort(e.target.value)} aria-label="Sort products">
+            <span className="shop-toolbar__count">{SHOP_PAGE.resultsLabel(filtered.length)}</span>
+            <select className="shop-toolbar__sort" value={sort} onChange={(e) => setSort(e.target.value)} aria-label={SHOP_PAGE.sortAriaLabel}>
               {SORT_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
           </div>
 
-          <ProductGrid products={filtered} emptyMessage="No pieces match your filters — try adjusting them" />
+          <ProductGrid products={filtered} emptyMessage={SHOP_PAGE.emptyMessage} />
         </div>
       </div>
 

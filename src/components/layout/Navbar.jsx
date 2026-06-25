@@ -3,24 +3,13 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { useFavorites } from '../../context/FavoritesContext';
 import { useSearch } from '../../context/SearchContext';
+import { BRAND, NAV_LINKS, NAVBAR_A11Y } from '../../data/site';
 import SearchModal from '../common/SearchModal';
 import './Navbar.css';
-
-const NAV_LINKS = [
-  { to: '/',            label: 'Home'        },
-  { to: '/shop',        label: 'Shop'        },
-  { to: '/categories',  label: 'Categories'  },
-  { to: '/new-arrivals',label: 'New Arrivals'},
-  { to: '/best-sellers',label: 'Best Sellers'},
-  { to: '/offers',      label: 'Offers'      },
-  { to: '/about',       label: 'About'       },
-  { to: '/contact',     label: 'Contact'     },
-];
 
 export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false);
   const [menuOpen, setMenuOpen]     = useState(false);
-  const [bannerDismissed, setBannerDismissed] = useState(false);
   const { totalItems } = useCart();
   const { count: favCount } = useFavorites();
   const { openSearch } = useSearch();
@@ -44,28 +33,20 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Announcement Banner */}
-      {!bannerDismissed && (
-        <div className="nav-banner">
-          <p className="t-label">✦ Free shipping on orders over $150 · Handcrafted with intention ✦</p>
-          <button className="nav-banner__close" onClick={() => setBannerDismissed(true)} aria-label="Dismiss banner">×</button>
-        </div>
-      )}
-
       <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} role="banner">
         <div className="navbar__inner container">
 
           {/* Logo */}
-          <Link to="/" className="navbar__logo" aria-label="Tmateem Crochet — Home">
-            <span className="navbar__logo-mark">🧶</span>
+          <Link to="/" className="navbar__logo" aria-label={`${BRAND.copyrightName} — Home`}>
+            <span className="navbar__logo-mark">{BRAND.logoMark}</span>
             <span className="navbar__logo-text">
-              <span className="navbar__logo-main">Tmateem</span>
-              <span className="navbar__logo-sub">CROCHET</span>
+              <span className="navbar__logo-main">{BRAND.shortName}</span>
+              <span className="navbar__logo-sub">{BRAND.suffix}</span>
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="navbar__nav" aria-label="Main navigation">
+          <nav className="navbar__nav" aria-label={NAVBAR_A11Y.mainNav}>
             {NAV_LINKS.map(({ to, label }) => (
               <NavLink
                 key={to}
@@ -80,7 +61,7 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="navbar__actions">
-            <button className="navbar__icon-btn" onClick={openSearch} aria-label="Search">
+            <button className="navbar__icon-btn" onClick={openSearch} aria-label={NAVBAR_A11Y.search}>
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
               </svg>
@@ -104,7 +85,7 @@ export default function Navbar() {
             <button
               className={`navbar__hamburger ${menuOpen ? 'navbar__hamburger--open' : ''}`}
               onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
+              aria-label={NAVBAR_A11Y.toggleMenu}
               aria-expanded={menuOpen}
             >
               <span /><span /><span />

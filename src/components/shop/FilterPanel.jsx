@@ -1,15 +1,7 @@
 import { useState } from 'react';
-import { CATEGORIES, getMinMaxPrice } from '../../data/products';
+import { CATEGORIES, getMinMaxPrice, getAllColors, getAllSizes } from '../../data/products';
+import { FILTER_LABELS } from '../../data/filters';
 import './FilterPanel.css';
-
-const ALL_COLORS = [
-  { name: 'Terracotta', hex: '#C4622D' }, { name: 'Indigo', hex: '#2C3E6B' },
-  { name: 'Ecru', hex: '#E8DCC8' }, { name: 'Sage', hex: '#9EB5A0' },
-  { name: 'Charcoal', hex: '#3A3A3A' }, { name: 'Rust', hex: '#A0472A' },
-  { name: 'Camel', hex: '#C49A6C' }, { name: 'Ivory', hex: '#F2EDD8' },
-];
-
-const ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'One Size'];
 
 export const SORT_OPTIONS = [
   { value: 'newest', label: 'Newest' },
@@ -24,6 +16,8 @@ export const SORT_OPTIONS = [
 
 export default function FilterPanel({ filters, setFilters, sort, setSort, resultCount, isOpen, onClose }) {
   const { min, max } = getMinMaxPrice();
+  const allColors = getAllColors();
+  const allSizes = getAllSizes();
   const [localPrice, setLocalPrice] = useState([filters.minPrice ?? min, filters.maxPrice ?? max]);
 
   const toggleArrayFilter = (key, value) => {
@@ -58,14 +52,14 @@ export default function FilterPanel({ filters, setFilters, sort, setSort, result
   return (
     <aside className={`filter-panel ${isOpen ? 'filter-panel--open' : ''}`}>
       <div className="filter-panel__mobile-head">
-        <h3 className="t-label">Filters {activeCount > 0 && `(${activeCount})`}</h3>
-        <button onClick={onClose} aria-label="Close filters">×</button>
+        <h3 className="t-label">{FILTER_LABELS.filtersHeading} {activeCount > 0 && `(${activeCount})`}</h3>
+        <button onClick={onClose} aria-label={FILTER_LABELS.closeFiltersAria}>×</button>
       </div>
 
       <div className="filter-panel__scroll">
         {/* Sort - mobile only shows here too but main sort lives in toolbar */}
         <div className="filter-section">
-          <h4 className="filter-section__title t-label">Category</h4>
+          <h4 className="filter-section__title t-label">{FILTER_LABELS.category}</h4>
           {Object.entries(CATEGORIES).map(([key, cat]) => (
             <label key={key} className="filter-check">
               <input
@@ -79,7 +73,7 @@ export default function FilterPanel({ filters, setFilters, sort, setSort, result
         </div>
 
         <div className="filter-section">
-          <h4 className="filter-section__title t-label">Price Range</h4>
+          <h4 className="filter-section__title t-label">{FILTER_LABELS.priceRange}</h4>
           <div className="filter-price">
             <div className="filter-price__inputs">
               <input
@@ -87,7 +81,7 @@ export default function FilterPanel({ filters, setFilters, sort, setSort, result
                 value={localPrice[0]}
                 onChange={(e) => setLocalPrice([Number(e.target.value), localPrice[1]])}
                 onBlur={applyPrice}
-                aria-label="Minimum price"
+                aria-label={FILTER_LABELS.minPriceAria}
               />
               <span>—</span>
               <input
@@ -95,7 +89,7 @@ export default function FilterPanel({ filters, setFilters, sort, setSort, result
                 value={localPrice[1]}
                 onChange={(e) => setLocalPrice([localPrice[0], Number(e.target.value)])}
                 onBlur={applyPrice}
-                aria-label="Maximum price"
+                aria-label={FILTER_LABELS.maxPriceAria}
               />
             </div>
             <input
@@ -112,9 +106,9 @@ export default function FilterPanel({ filters, setFilters, sort, setSort, result
         </div>
 
         <div className="filter-section">
-          <h4 className="filter-section__title t-label">Color</h4>
+          <h4 className="filter-section__title t-label">{FILTER_LABELS.color}</h4>
           <div className="filter-colors">
-            {ALL_COLORS.map((c) => (
+            {allColors.map((c) => (
               <button
                 key={c.name}
                 className={`filter-swatch ${filters.colors?.includes(c.name) ? 'filter-swatch--active' : ''}`}
@@ -129,9 +123,9 @@ export default function FilterPanel({ filters, setFilters, sort, setSort, result
         </div>
 
         <div className="filter-section">
-          <h4 className="filter-section__title t-label">Size</h4>
+          <h4 className="filter-section__title t-label">{FILTER_LABELS.size}</h4>
           <div className="filter-sizes">
-            {ALL_SIZES.map((s) => (
+            {allSizes.map((s) => (
               <button
                 key={s}
                 className={`filter-size-chip ${filters.sizes?.includes(s) ? 'filter-size-chip--active' : ''}`}
@@ -144,32 +138,32 @@ export default function FilterPanel({ filters, setFilters, sort, setSort, result
         </div>
 
         <div className="filter-section">
-          <h4 className="filter-section__title t-label">Quick Filters</h4>
+          <h4 className="filter-section__title t-label">{FILTER_LABELS.quickFilters}</h4>
           <label className="filter-check">
             <input type="checkbox" checked={!!filters.onSale} onChange={() => setFilters((p) => ({ ...p, onSale: !p.onSale }))} />
-            <span>On Sale</span>
+            <span>{FILTER_LABELS.onSale}</span>
           </label>
           <label className="filter-check">
             <input type="checkbox" checked={!!filters.inStock} onChange={() => setFilters((p) => ({ ...p, inStock: !p.inStock }))} />
-            <span>In Stock Only</span>
+            <span>{FILTER_LABELS.inStockOnly}</span>
           </label>
           <label className="filter-check">
             <input type="checkbox" checked={!!filters.newArrival} onChange={() => setFilters((p) => ({ ...p, newArrival: !p.newArrival }))} />
-            <span>New Arrivals</span>
+            <span>{FILTER_LABELS.newArrivals}</span>
           </label>
           <label className="filter-check">
             <input type="checkbox" checked={!!filters.bestSeller} onChange={() => setFilters((p) => ({ ...p, bestSeller: !p.bestSeller }))} />
-            <span>Best Sellers</span>
+            <span>{FILTER_LABELS.bestSellers}</span>
           </label>
         </div>
 
         {activeCount > 0 && (
-          <button className="filter-clear-all" onClick={clearAll}>Clear all filters</button>
+          <button className="filter-clear-all" onClick={clearAll}>{FILTER_LABELS.clearAll}</button>
         )}
       </div>
 
       <div className="filter-panel__mobile-footer">
-        <button className="filter-apply-btn" onClick={onClose}>Show {resultCount} results</button>
+        <button className="filter-apply-btn" onClick={onClose}>{FILTER_LABELS.showResults.replace('{count}', resultCount)}</button>
       </div>
     </aside>
   );

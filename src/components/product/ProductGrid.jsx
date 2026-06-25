@@ -1,8 +1,9 @@
 import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { PRODUCT_GRID_LABELS } from '../../data/productCardLabels';
 import ProductCard from './ProductCard';
 import './ProductGrid.css';
 
-export default function ProductGrid({ products, emptyMessage = 'No products found' }) {
+export default function ProductGrid({ products, emptyMessage = PRODUCT_GRID_LABELS.emptyDefault }) {
   const gridRef = useScrollReveal();
 
   if (products.length === 0) {

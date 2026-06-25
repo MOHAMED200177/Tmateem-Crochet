@@ -2,7 +2,6 @@ import Hero from '../components/home/Hero';
 import CategoryShowcase from '../components/home/CategoryShowcase';
 import PhilosophySection from '../components/home/PhilosophySection';
 import ProcessSection from '../components/home/ProcessSection';
-import Testimonials from '../components/home/Testimonials';
 import WhatsAppBanner from '../components/home/WhatsAppBanner';
 
 export default function Home() {
@@ -12,7 +11,6 @@ export default function Home() {
       <CategoryShowcase />
       <PhilosophySection />
       <ProcessSection />
-      <Testimonials />
       <WhatsAppBanner />
     </>
   );

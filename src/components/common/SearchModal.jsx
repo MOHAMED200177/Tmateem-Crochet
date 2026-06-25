@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSearch } from '../../context/SearchContext';
 import { getDiscount, formatPrice } from '../../utils/helpers';
+import { SEARCH_MODAL_LABELS } from '../../data/productCardLabels';
 import './SearchModal.css';
 
 export default function SearchModal() {
@@ -44,7 +45,7 @@ export default function SearchModal() {
 
   return (
     <div className="search-modal-overlay" onClick={closeSearch}>
-      <div className="search-modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Search products">
+      <div className="search-modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label={SEARCH_MODAL_LABELS.ariaLabel}>
         <div className="search-modal__bar">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
@@ -55,22 +56,22 @@ export default function SearchModal() {
             value={query}
             onChange={(e) => handleSearch(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && goToFullResults(query)}
-            placeholder="Search dresses, linen, terracotta, sizes..."
+            placeholder={SEARCH_MODAL_LABELS.inputPlaceholder}
             className="search-modal__input"
-            aria-label="Search products"
+            aria-label={SEARCH_MODAL_LABELS.ariaLabel}
           />
           {query && (
-            <button className="search-modal__clear" onClick={clearSearch} aria-label="Clear search">×</button>
+            <button className="search-modal__clear" onClick={clearSearch} aria-label={SEARCH_MODAL_LABELS.clearSearchAria}>×</button>
           )}
-          <button className="search-modal__close" onClick={closeSearch} aria-label="Close search">Esc</button>
+          <button className="search-modal__close" onClick={closeSearch} aria-label={SEARCH_MODAL_LABELS.closeSearchAria}>{SEARCH_MODAL_LABELS.closeSearchKeyHint}</button>
         </div>
 
         <div className="search-modal__body">
           {!query && history.length > 0 && (
             <div className="search-modal__section">
               <div className="search-modal__section-head">
-                <span className="t-label">Recent Searches</span>
-                <button className="search-modal__clear-history" onClick={clearHistory}>Clear</button>
+                <span className="t-label">{SEARCH_MODAL_LABELS.recentSearches}</span>
+                <button className="search-modal__clear-history" onClick={clearHistory}>{SEARCH_MODAL_LABELS.clearHistory}</button>
               </div>
               <div className="search-modal__chips">
                 {history.map((h) => (
@@ -84,7 +85,7 @@ export default function SearchModal() {
 
           {!query && history.length === 0 && (
             <div className="search-modal__empty">
-              <p className="t-serif">Search by name, color, fabric, size or category...</p>
+              <p className="t-serif">{SEARCH_MODAL_LABELS.emptyStateHint}</p>
             </div>
           )}
 
@@ -105,16 +106,16 @@ export default function SearchModal() {
           {query && !isSearching && results.length === 0 && (
             <div className="search-modal__empty">
               <span style={{ fontSize: '2rem' }}>◌</span>
-              <p className="t-serif">No pieces found for "{query}"</p>
-              <p className="search-modal__empty-hint">Try searching for "linen", "dress" or a color</p>
+              <p className="t-serif">{SEARCH_MODAL_LABELS.noResultsPrefix} "{query}"</p>
+              <p className="search-modal__empty-hint">{SEARCH_MODAL_LABELS.noResultsHint}</p>
             </div>
           )}
 
           {query && !isSearching && results.length > 0 && (
             <div className="search-modal__section">
               <div className="search-modal__section-head">
-                <span className="t-label">{results.length} Result{results.length !== 1 ? 's' : ''}</span>
-                <button className="search-modal__view-all" onClick={() => goToFullResults(query)}>View all →</button>
+                <span className="t-label">{SEARCH_MODAL_LABELS.resultsSuffix(results.length)}</span>
+                <button className="search-modal__view-all" onClick={() => goToFullResults(query)}>{SEARCH_MODAL_LABELS.viewAll}</button>
               </div>
               <div className="search-modal__results">
                 {results.slice(0, 6).map((p) => {

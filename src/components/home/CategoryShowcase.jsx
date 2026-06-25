@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CATEGORIES, getProductsByCategory } from '../../data/products';
+import { CATEGORY_SHOWCASE_CONTENT } from '../../data/homeContent';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import './CategoryShowcase.css';
 
@@ -10,8 +11,8 @@ export default function CategoryShowcase() {
     <section className="cat-showcase" ref={ref}>
       <div className="container">
         <div className="section-head reveal">
-          <p className="t-label section-head__eyebrow">Browse by Craft</p>
-          <h2 className="section-head__title t-display">Shop the Collection</h2>
+          <p className="t-label section-head__eyebrow">{CATEGORY_SHOWCASE_CONTENT.eyebrow}</p>
+          <h2 className="section-head__title t-display">{CATEGORY_SHOWCASE_CONTENT.title}</h2>
           <div className="divider-organic" />
         </div>
 

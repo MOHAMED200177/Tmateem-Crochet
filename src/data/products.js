@@ -128,8 +128,8 @@ export const PRODUCTS = [
     price: 400,
     oldPrice: null,
     images: [
-      '/1/2.jpg',
       '/1/1.jpg',
+      '/1/2.jpg',
     ],
     colors: [
       { name: 'أزرق وبينك', hex: '#5BA3D0' },
@@ -175,7 +175,27 @@ export const getRelatedProducts = (product, count = 4) =>
 export const getAllTags = () =>
   [...new Set(PRODUCTS.flatMap((p) => p.tags))].sort();
 
+export const getAllColors = () => {
+  const seen = new Map();
+  PRODUCTS.forEach((p) => p.colors.forEach((c) => {
+    if (!seen.has(c.name)) seen.set(c.name, c);
+  }));
+  return [...seen.values()];
+};
+
+export const getAllSizes = () =>
+  [...new Set(PRODUCTS.flatMap((p) => p.sizes))];
+
 export const getMinMaxPrice = () => {
   const prices = PRODUCTS.map((p) => p.price);
   return { min: Math.min(...prices), max: Math.max(...prices) };
+};
+
+// Human-readable labels for the badges enum used on PRODUCTS
+export const BADGE_LABELS = {
+  new: 'New',
+  sale: 'Sale',
+  bestseller: 'Bestseller',
+  exclusive: 'Exclusive',
+  handmade: 'Handmade',
 };

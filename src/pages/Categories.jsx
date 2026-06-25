@@ -5,6 +5,7 @@ import { useFilteredProducts } from '../hooks/useFilteredProducts';
 import ProductGrid from '../components/product/ProductGrid';
 import PageHeader from '../components/common/PageHeader';
 import { SORT_OPTIONS } from '../components/shop/FilterPanel';
+import { CATEGORIES_PAGE, SHOP_PAGE } from '../data/pageContent';
 import './Categories.css';
 
 export default function Categories() {
@@ -19,12 +20,12 @@ export default function Categories() {
 
   return (
     <>
-      <PageHeader eyebrow="Browse" title="Categories" subtitle="Find pieces by craft and silhouette" />
+      <PageHeader eyebrow={CATEGORIES_PAGE.eyebrow} title={CATEGORIES_PAGE.title} subtitle={CATEGORIES_PAGE.subtitle} />
 
       <div className="container cat-page">
         <div className="cat-tabs">
           <button className={`cat-tab ${activeCat === 'all' ? 'cat-tab--active' : ''}`} onClick={() => setSearchParams({})}>
-            All ({PRODUCTS.length})
+            {CATEGORIES_PAGE.allLabel(PRODUCTS.length)}
           </button>
           {Object.entries(CATEGORIES).map(([key, cat]) => {
             const count = PRODUCTS.filter((p) => p.category === key).length;
@@ -37,13 +38,13 @@ export default function Categories() {
         </div>
 
         <div className="cat-page__toolbar">
-          <span className="shop-toolbar__count">{filtered.length} results</span>
-          <select className="shop-toolbar__sort" value={sort} onChange={(e) => setSort(e.target.value)} aria-label="Sort products">
+          <span className="shop-toolbar__count">{SHOP_PAGE.resultsLabel(filtered.length)}</span>
+          <select className="shop-toolbar__sort" value={sort} onChange={(e) => setSort(e.target.value)} aria-label={SHOP_PAGE.sortAriaLabel}>
             {SORT_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
         </div>
 
-        <ProductGrid products={filtered} emptyMessage="No pieces in this category yet" />
+        <ProductGrid products={filtered} emptyMessage={CATEGORIES_PAGE.emptyMessage} />
       </div>
     </>
   );

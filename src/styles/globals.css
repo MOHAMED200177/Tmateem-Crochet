@@ -288,4 +288,8 @@ input, textarea, select {
     opacity: 1;
     transform: none;
   }
+  .page-enter {
+    opacity: 1;
+    transform: none;
+  }
 }
